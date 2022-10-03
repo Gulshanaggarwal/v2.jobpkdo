@@ -1,11 +1,16 @@
 import express from "express";
-const app = express();
+import connectDB from "./config/db";
+import routes from "./routes";
 
+const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use("/api", routes);
 
-app.get("/",(req,res)=>{
-    res.send("Welcome to Express server")
-})
+app.use("*", (req, res) => {
+	res.status(404).json({ message: "404 not found!" });
+});
 
-app.listen(PORT,()=>console.log("Listening at port 5000"))
+connectDB();
+
+app.listen(PORT, () => console.log(`Server is listening at PORT ${PORT}`));
