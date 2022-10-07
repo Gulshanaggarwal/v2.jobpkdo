@@ -1,10 +1,12 @@
 import express from "express";
 import connectDB from "./config/db";
+import authMiddleware from "./middlewares/auth";
 import routes from "./routes";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(authMiddleware); //auth middleware
 app.use("/api", routes);
 
 app.use("*", (req, res) => {
