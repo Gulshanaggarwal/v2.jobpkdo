@@ -1,14 +1,19 @@
 import { Response } from "express";
 import { RequestUserAuth } from "../../middlewares/auth";
 
-const funcs = {
-	login: (req: RequestUserAuth, res: Response) => {
+interface login {
+	login: (req: RequestUserAuth, res: Response) => void;
+}
+
+const funcs: login = {
+	login: (req, res) => {
 		if (req.user) {
-			return res.status(200).json({
+			res.status(200).json({
 				error: false,
 				message: "Authorized",
 				data: req.user,
 			});
+			return;
 		}
 		res.status(500).json({ error: true, message: "Server error!" });
 	},

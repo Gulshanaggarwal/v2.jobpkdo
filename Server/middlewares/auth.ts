@@ -3,7 +3,7 @@ import admin from "../config/firebase";
 import userController from "../controllers/v1/user";
 
 export interface RequestUserAuth extends Request {
-	user?: string | null;
+	user?: string | Error;
 }
 
 const authMiddleware = async (
@@ -24,10 +24,10 @@ const authMiddleware = async (
 			req.user = user;
 			return next();
 		}
-		res.status(401).json({ message: "Unauthorized" });
+		res.status(401).json({ error: false, message: "Unauthorized" });
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ message: "Server error!" });
+		res.status(500).json({ error: true, message: "Server error!" });
 	}
 };
 
