@@ -15,10 +15,6 @@ const schema = new mongoose.Schema(
 			type: String,
 			default: "",
 		},
-		notificationInterval: {
-			type: String,
-			default: "0.5",
-		},
 	},
 	{
 		timestamps: true,

@@ -1,6 +1,7 @@
 import user from "../../schema/user";
 import { RequestUserAuth } from "../../middlewares/auth";
 import { Response } from "express";
+import userService from "../../services/v1/user";
 
 interface user {
 	findOrCreate: (userId: string) => Promise<string | Error>;
@@ -27,23 +28,14 @@ const funcs: user = {
 	// Fetch User details
 	fetchUser: async (req, res) => {
 		try {
-			const data = await user
-				.findOne(
-					{ userId: req.user },
-					"userId notificationEnabled notificationEmail notificationInterval"
-				)
-				.exec();
-			if (data) {
-				res.status(200).json({
-					error: false,
-					message: "User fetched",
-					data,
-				});
-				return;
-			}
-			res.status(404).json({ error: true, message: "User not found" });
+			const response = await userService.fetchUser(req.user as string);
+			res.status(response.status).json(response);
 		} catch (error) {
-			res.status(500).json({ error: true, message: "Server error" });
+			res.status(500).json({
+				error: true,
+				status: 500,
+				message: "Server error",
+			});
 		}
 	},
 
@@ -51,28 +43,11 @@ const funcs: user = {
 
 	updateUser: async (req, res) => {
 		try {
-			const query = { userId: req.user };
-			const {
-				notificationEnabled,
-				notificationEmail,
-				notificationInterval,
-			} = req.body;
-
-			const data = await user.findOneAndUpdate(
-				query,
-				{
-					notificationEnabled,
-					notificationEmail,
-					notificationInterval,
-				},
-				{ new: true }
+			const response = await userService.updateUser(
+				req.user as string,
+				req.body
 			);
-
-			res.status(200).json({
-				error: false,
-				message: "User settings updated",
-				data,
-			});
+			res.status(response.status).json(response);
 		} catch (error) {
 			res.status(500).json({ error: true, message: "Server error" });
 		}

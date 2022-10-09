@@ -12,10 +12,7 @@ const authMiddleware = async (
 	next: NextFunction
 ) => {
 	try {
-		const token: string | undefined = req.headers.authorization?.replace(
-			"Bearer ",
-			""
-		);
+		const token = req.headers.authorization?.replace("Bearer ", "");
 		const decodedToken = await admin.auth().verifyIdToken(token as string);
 
 		if (decodedToken) {
