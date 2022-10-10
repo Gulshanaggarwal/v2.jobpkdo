@@ -33,7 +33,18 @@ const funcs: bookmark = {
 
 	// fetch bookmarks
 
-	fetchBookmarks: async () => {},
+	fetchBookmarks: async (req, res) => {
+		try {
+			const response = await bookmarkService.fetchBookmarks(
+				req.user as string,
+				req.query.page as string
+			);
+			res.status(response.status).json(response);
+		} catch (error) {
+			console.log(error);
+			res.status(500).json({ error: true, message: "Server error" });
+		}
+	},
 };
 
 export default funcs;
