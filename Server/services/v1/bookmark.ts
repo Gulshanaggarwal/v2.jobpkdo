@@ -45,7 +45,7 @@ const funcs = {
 	fetchBookmarks: async (userId: string, page: string) => {
 		try {
 			const perPage = 10;
-			const pageNumber: number = Number(page);
+			const pageNumber = Number(page);
 
 			if (pageNumber > 0) {
 				const data = await bookmark

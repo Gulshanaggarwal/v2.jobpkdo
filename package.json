@@ -1,0 +1,22 @@
+{
+	"devDependencies": {
+		"husky": "^8.0.1"
+	},
+	"name": "v2.jobpkdo",
+	"version": "1.0.0",
+	"main": "   ",
+	"scripts": {
+		"prepare": "husky install"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Gulshanaggarwal/v2.jobpkdo.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Gulshanaggarwal/v2.jobpkdo/issues"
+	},
+	"homepage": "https://github.com/Gulshanaggarwal/v2.jobpkdo#readme",
+	"description": ""
+}

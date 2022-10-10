@@ -13,7 +13,7 @@ const funcs: user = {
 	// find or create
 	findOrCreate: async (userId) => {
 		try {
-			let data = await user.findOne({ userId }).exec();
+			const data = await user.findOne({ userId }).exec();
 
 			if (data) {
 				return userId;
