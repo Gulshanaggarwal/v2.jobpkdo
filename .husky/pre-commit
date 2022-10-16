@@ -1,7 +1,13 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-
+# client 
+echo "Client side linting checking..."
+cd ./client
+npm run lint 
+echo "Client side linting done"
 # server
-cd ./server
+echo "Server side linting checking......"
+cd ../server
 npm run lint
+echo "Server side Linting Done"
