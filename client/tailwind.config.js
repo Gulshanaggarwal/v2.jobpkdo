@@ -7,27 +7,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
+        violet: {
           main: '#554994'
         },
-        secondary: {
+        orange: {
           main: '#F29393',
         },
-        text: {
-          primary: '#0D0223',
+        black: {
+          main: '#0D0223',
           secondary: '#2E2934',
-          twitter: '#1DA1F2',
-          white: '#F5F5F5'
         },
-        background: {
-          default: '#F5F5F5',
-          footer: '#0D0223',
-          extra1: '#D9D9D9',
-          extra2: '#F0EEEE'
+        grey: {
+          main: '#F5F5F5',
+          secondary: '#D9D9D9',
+          tertiary: '#F0EEEE'
         },
-        border: {
-          primary: '#D9D9D9'
-        }
+        twitter: '#1DA1F2',
+        footer: '#0D0223'
       }
     },
   },
