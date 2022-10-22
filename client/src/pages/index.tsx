@@ -4,7 +4,6 @@ import { FaTwitter, FaGithub, FaSistrix, FaRegBookmark, FaRegCheckCircle, FaRegB
 import { BiShareAlt } from 'react-icons/bi'
 import Image from 'next/image'
 
-
 const iconStyle = {
   color: '#F5F5F5',
   fontSize: '2rem'
@@ -83,8 +82,8 @@ const Home: NextPage = () => {
       </section>
       {/*--- Advanced feature---- */}
       <section className='py-16 px-5'>
-        <h2 className='font-extrabold text-orange-main text-2xl py-4'>Advanced feature! ✨</h2>
-        <Image src='/Reply_Demo.png' alt='reply-image' width={300} height={300} />
+        <h2 className='font-extrabold text-orange-main text-2xl py-8'>Advanced feature! ✨</h2>
+        <Image src='/Reply_Demo.png' alt='reply-image' width={330} height={300} />
         <div className='py-12'>
           <div className='flex justify-center items-center rounded-full w-24 h-24 bg-gradient-to-b from-orange-main to-violet-main'>
             <FaRegCommentAlt style={iconStyle} />

@@ -26,6 +26,7 @@ module.exports = {
           tertiary: '#F0EEEE'
         },
         twitter: '#1DA1F2',
+        twitter_light: '#D2E4EF',
         footer: '#0D0223'
       },
       fontFamily: {
@@ -33,5 +34,5 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')]
 }
