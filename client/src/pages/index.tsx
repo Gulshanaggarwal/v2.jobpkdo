@@ -3,6 +3,9 @@ import Header from '../components/Header/header'
 import { FaTwitter, FaGithub, FaSistrix, FaRegBookmark, FaRegCheckCircle, FaRegBell, FaRegCommentAlt } from 'react-icons/fa'
 import { BiShareAlt } from 'react-icons/bi'
 import Image from 'next/image'
+import Modal from '../components/Modal'
+import SignIn from '../components/Signin'
+import useModal from '../hooks/useModal'
 
 const iconStyle = {
   color: '#F5F5F5',
@@ -10,6 +13,10 @@ const iconStyle = {
 }
 
 const Home: NextPage = () => {
+
+  const { isShowing, toggle } = useModal();
+
+
   return (
     <div>
       <main className='px-5 py-8'>
@@ -27,12 +34,13 @@ const Home: NextPage = () => {
           for the jobs you love.
         </p>
         <div className='flex justify-around  pt-16 pb-4'>
-          <button className='bg-violet-main rounded-full text-white px-4 py-1'>Get Started</button>
+          <button className='bg-violet-main rounded-full text-white px-4 py-1' type='button' onClick={toggle}>Get Started</button>
           <a className='flex items-center px-2 py-1 rounded-full border-2 border-grey-secondary' href='https://github.com/Gulshanaggarwal/v2.jobpkdo'>
             <FaGithub />
             <span className='px-1'>Star on Github</span>
           </a>
         </div>
+        <Modal isShowing={isShowing} toggle={toggle} Component={SignIn} />
       </main>
       {/*--- Features section---- */}
       <section className='bg-grey-tertiary py-16 px-5'>

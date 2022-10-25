@@ -1,13 +1,17 @@
 import { FaTwitter } from "react-icons/fa"
 
+interface SignInProp {
+    toggle: () => void
+}
 
-export default function SignIn() {
+export default function SignIn({ toggle }: SignInProp) {
+
     return (
         <>
-            <input type="checkbox" checked id="signin-modal" className="modal-toggle" />
+            <input type="checkbox" defaultChecked id="signin-modal" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box bg-gradient-to-b from-twitter_light">
-                    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label onClick={toggle} htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h1 className='font-extrabold text-center text-xl py-4'>
                         <span className='text-orange-main'>JOB</span>
                         <span className='text-black-main'>PKDO✨</span>
