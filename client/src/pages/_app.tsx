@@ -1,15 +1,16 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Footer from '../components/Footer'
-import Header from '../components/Header/header'
+import Header from '../components/Header'
+import AuthContextProvider from '../context/AuthContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-  return <>
+  return <AuthContextProvider>
     <Header />
     <Component {...pageProps} />
     <Footer />
-  </>
+  </AuthContextProvider>
 }
 
 export default MyApp

@@ -4,7 +4,6 @@ const useModal = () => {
 	const [isShowing, setIsShowing] = useState(false);
 
 	function toggle() {
-		console.log("hello");
 		setIsShowing(!isShowing);
 	}
 

@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import Header from '../components/Header/header'
 import { FaTwitter, FaGithub, FaSistrix, FaRegBookmark, FaRegCheckCircle, FaRegBell, FaRegCommentAlt } from 'react-icons/fa'
 import { BiShareAlt } from 'react-icons/bi'
 import Image from 'next/image'

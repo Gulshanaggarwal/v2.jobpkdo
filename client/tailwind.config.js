@@ -15,6 +15,7 @@ module.exports = {
         },
         orange: {
           main: '#F29393',
+          light: '#EBC4C4'
         },
         black: {
           main: '#0D0223',
