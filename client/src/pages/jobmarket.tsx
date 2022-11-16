@@ -4,6 +4,7 @@ import { MdOutlineRefresh } from 'react-icons/md'
 import { useState } from 'react'
 import QueryItems from '../components/queryItems'
 import Protected from '../components/Protected'
+import Searchhints from '../components/Searchhints'
 
 const Jobmarket: NextPage = () => {
 
@@ -11,11 +12,11 @@ const Jobmarket: NextPage = () => {
     const [queryItems, setQueryItems] = useState<string[]>([]);
 
 
-    const handleSubmit = () => {
+    const handleSubmit = (search: string) => {
         if (search.trim().length === 0) return alert('field cannot be empty');
 
 
-        if (queryItems.length > 5) return alert('Remove a item from the search');
+        if (queryItems.length >= 5) return alert('Remove a item from the search');
 
         if (!queryItems.find((query) => query === search.trim())) {
             setQueryItems([...queryItems, search.trim()])
@@ -31,12 +32,15 @@ const Jobmarket: NextPage = () => {
             <div className='py-8'>
                 <main>
                     <div className='bg-violet-main py-4'>
-                        <p className='text-center py-1 text-grey-main font-bold'>Search for the jobs you love ❤</p>
-                        <div className='flex justify-center py-4'>
-                            <input value={search} onChange={(e) => setSearch(e.target.value)} className='bg-grey-main rounded-l outline-none p-2' type='text' placeholder='search for skill, techstack' />
-                            <button onClick={handleSubmit} className='bg-orange-main px-4 rounded-r'>
-                                <FaSistrix style={{ color: '#F5F5F5', fontSize: '1.2rem' }} />
-                            </button>
+                        <p className='text-center py-4 text-grey-main font-bold'>Search for the jobs you love ❤</p>
+                        <div className='relative w-1/4 mx-auto'>
+                            <div className='flex'>
+                                <input value={search} onChange={(e) => setSearch(e.target.value)} className='bg-grey-main rounded-l outline-none px-3 py-2 w-full' type='text' placeholder='Search for skill, techstack..' />
+                                <button onClick={() => handleSubmit(search)} className='bg-orange-main px-4 rounded-r py-2'>
+                                    <FaSistrix style={{ color: '#F5F5F5', fontSize: '1.2rem' }} />
+                                </button>
+                            </div>
+                            {search !== '' && <Searchhints search={search} handleSubmit={handleSubmit} />}
                         </div>
                         <QueryItems queryItems={queryItems} setQueryItems={setQueryItems} />
                     </div>
