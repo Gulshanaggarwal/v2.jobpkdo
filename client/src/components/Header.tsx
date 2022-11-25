@@ -4,6 +4,7 @@ import SignIn from './Signin';
 import { FaSpinner } from 'react-icons/fa'
 import Avatar from './Avatar';
 import { useAuthContext } from '../context/AuthContext';
+import Spinner from '../utility/spinner';
 
 
 
@@ -17,7 +18,7 @@ export default function Header() {
                 <span className='text-orange-main'>JOB</span>
                 <span className='text-black-main'>PKDO</span>
             </h1>
-            {loading ? <FaSpinner className='animate-spin' style={{ color: '#F29393' }} /> : (!user ? <button onClick={toggle} className='bg-violet-main text-grey-main rounded-full px-3 py-1 text-xs'>Signin</button> :
+            {loading ? <Spinner color="#F29393" fontSize="1rem" /> : (!user ? <button onClick={toggle} className='bg-violet-main text-grey-main rounded-full px-3 py-1 text-xs'>Signin</button> :
                 <Avatar url={user.avatar} />)}
 
             <Modal isShowing={isShowing} toggle={toggle} Component={SignIn} />
