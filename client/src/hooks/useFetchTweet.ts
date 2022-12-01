@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
+import fetchCall from "../utility/fetchcall";
 
 interface useFetchTweet {
 	queryItems: string[];
@@ -33,36 +34,26 @@ export default function useFetchTweet({
 				" " +
 				`&filter=${filter.join(" ")}`;
 			const url = token ? baseUrl + `&next_token=${token}` : baseUrl;
-			try {
-				const header = {
-					headers: {
-						Authorization: "Bearer " + user?.token,
-					},
-				};
-				let promiseRes = await fetch(url, header);
-				const response = await promiseRes.json();
+			const response = await fetchCall(url, user?.token, "GET");
 
-				if (nextLoading) {
-					setNextLoading(!nextLoading);
-				}
-
-				if (!response.error && response.status === 200) {
-					if (prevQueryUrl !== baseUrl) {
-						setTweets([...response.data.data]);
-						setPrevQueryUrl(baseUrl);
-					} else {
-						setTweets([...tweets, ...response.data.data]);
-					}
-					if (response.data.next_token) {
-						setIsStart(false);
-						setToken(response.data.next_token);
-						return;
-					}
-				}
-				throw response.message;
-			} catch (error) {
-				alert(error);
+			if (nextLoading) {
+				setNextLoading(!nextLoading);
 			}
+
+			if (!response.error && response.status === 200) {
+				if (prevQueryUrl !== baseUrl) {
+					setTweets([...response.data.data]);
+					setPrevQueryUrl(baseUrl);
+				} else {
+					setTweets([...tweets, ...response.data.data]);
+				}
+				if (response.data.next_token) {
+					setIsStart(false);
+					setToken(response.data.next_token);
+					return;
+				}
+			}
+			alert(response.message);
 		};
 		fetchTweets();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
