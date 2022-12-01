@@ -1,38 +1,31 @@
-import fetch from "cross-fetch";
+import apiFetch from "../../utils/apiFetch";
 
 const funcs = {
-	searchJob: async (
-		search: string,
-		filter: string,
-		page: string,
-		next_token: string
-	) => {
+	searchJob: async (search: string, filter: string, next_token: string) => {
+		console.log("filter", filter);
 		try {
 			const tweetQuery = `("we are hiring" OR "is hiring" OR "we are looking for" OR "i am looking for") ${search} -flatmate -roommate -something lang:en -is:retweet`;
-			const pageNumber = parseInt(page);
 			const baseURL = `https://api.twitter.com/2/tweets/search/recent?query=${tweetQuery}`;
-			if (pageNumber >= 1) {
-				const url =
-					pageNumber > 1
-						? baseURL + `&next_token=${next_token}`
-						: baseURL;
-				const response = await fetch(url, {
-					headers: {
-						Authorization: "Bearer " + process.env.BEARER_TOKEN,
-					},
-				});
+			const url = next_token
+				? baseURL + `&next_token=${next_token}`
+				: baseURL;
 
+			const response = await apiFetch(url);
+			if (!response.errors && response.meta.result_count !== 0) {
 				return {
 					error: false,
 					status: 200,
 					message: "successfully fetched",
-					data: await response.json(),
+					data: {
+						data: response.data,
+						next_token: response.meta.next_token,
+					},
 				};
 			}
 			return {
 				error: true,
-				status: 400,
-				message: "Page value should be greater than zero",
+				status: 404,
+				message: "No Data found",
 			};
 		} catch (error) {
 			console.log(error);

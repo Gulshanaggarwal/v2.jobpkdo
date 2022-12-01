@@ -19,6 +19,7 @@ export default function useFetchTweet({
 	const [tweets, setTweets] = useState<{ id: string }[]>([]);
 	const [token, setToken] = useState<string | null>(null);
 	const [isStart, setIsStart] = useState<boolean>(true);
+	const [prevQueryUrl, setPrevQueryUrl] = useState<string>("");
 	const { user } = useAuthContext();
 
 	console.log("quer", queryItems);
@@ -30,8 +31,7 @@ export default function useFetchTweet({
 					" "
 				)}` +
 				" " +
-				`${filter.join(" ")}`;
-			console.log(baseUrl);
+				`&filter=${filter.join(" ")}`;
 			const url = token ? baseUrl + `&next_token=${token}` : baseUrl;
 			try {
 				const header = {
@@ -47,7 +47,12 @@ export default function useFetchTweet({
 				}
 
 				if (!response.error && response.status === 200) {
-					setTweets([...tweets, ...response.data.data]);
+					if (prevQueryUrl !== baseUrl) {
+						setTweets([...response.data.data]);
+						setPrevQueryUrl(baseUrl);
+					} else {
+						setTweets([...tweets, ...response.data.data]);
+					}
 					if (response.data.next_token) {
 						setIsStart(false);
 						setToken(response.data.next_token);
