@@ -14,10 +14,10 @@ const Jobmarket: NextPage = () => {
 
     const [search, setSearch] = useState<string>('');
     const [queryItems, setQueryItems] = useState<string[]>([]);
-    const [count, setCount] = useState<number>(0);
+    const [page, setPage] = useState<number>(0);
     const [nextLoading, setNextLoading] = useState<boolean>(false);
     const [filter, setFilter] = useState<string[]>([]);
-    const { tweets, token, isStart } = useFetchTweet({ queryItems, count, nextLoading, setNextLoading, filter });
+    const { tweets, token, isStart } = useFetchTweet({ queryItems, page, nextLoading, setNextLoading, filter });
 
 
 
@@ -58,7 +58,7 @@ const Jobmarket: NextPage = () => {
                         </div>
                         {/* Filter */}
                         <Filter filter={filter} setFilter={setFilter} />
-                        <ListTweet isStart={isStart} token={token} count={count} setCount={setCount} list={tweets} nextLoading={nextLoading} setNextLoading={setNextLoading} />
+                        <ListTweet isStart={isStart} token={token} page={page} setPage={setPage} list={tweets} nextLoading={nextLoading} setNextLoading={setNextLoading} />
 
                     </main>
                 </div>

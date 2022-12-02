@@ -12,11 +12,10 @@ export default function Tweet({ id }: { id: string }) {
     const { user } = useAuthContext();
 
     const handleBookmark = async () => {
+        setLoading(true);
         const url = 'http://localhost:5000/api/v1/bookmark'
         const body = JSON.stringify({ tweetId: id, applyUrl: 'xyz' })
-        setLoading(true);
         const response = await fetchCall(url, user?.token, 'POST', body);
-        console.log(response);
         setLoading(false);
         if (!response.error) {
             alert('bookmarked successfully');

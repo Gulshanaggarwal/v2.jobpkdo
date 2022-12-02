@@ -50,9 +50,10 @@ const funcs = {
 			if (pageNumber > 0) {
 				const data = await bookmark
 					.find({ userId })
+					.select("tweetId applyUrl")
 					.skip((pageNumber - 1) * perPage)
 					.limit(perPage);
-				if (data) {
+				if (data.length !== 0) {
 					return {
 						error: false,
 						status: 200,
@@ -60,6 +61,7 @@ const funcs = {
 						data,
 					};
 				}
+				return { error: true, status: 404, message: "No data found" };
 			}
 			return { error: true, status: 404, message: "No data found" };
 		} catch (error) {

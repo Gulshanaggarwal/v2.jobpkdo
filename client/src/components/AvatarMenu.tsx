@@ -19,10 +19,10 @@ export default function AvatarMenu({ active, setActive }: AvatarMenuProp) {
                     <Link href='/jobmarket'>Job Market</Link>
                 </div>
                 <div className='px-4 py-2 hover:bg-grey-secondary'>
-                    <Link href='/saved-jobs'>Saved Jobs</Link>
+                    <Link href='/bookmarks'>Saved Jobs</Link>
                 </div>
                 <div className='px-4 py-2 hover:bg-grey-secondary'>
-                    <Link href='/Settings'>Settings</Link>
+                    <Link href='/settings'>Settings</Link>
                 </div>
                 <div className='px-4 py-2 hover:bg-grey-secondary block'>
                     <button onClick={() => logout()}>Logout</button>

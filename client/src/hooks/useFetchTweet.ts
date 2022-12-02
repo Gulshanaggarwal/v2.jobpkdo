@@ -4,7 +4,7 @@ import fetchCall from "../utility/fetchcall";
 
 interface useFetchTweet {
 	queryItems: string[];
-	count: number;
+	page: number;
 	nextLoading: boolean;
 	setNextLoading: (type: boolean) => void;
 	filter: string[];
@@ -12,7 +12,7 @@ interface useFetchTweet {
 
 export default function useFetchTweet({
 	queryItems,
-	count,
+	page,
 	nextLoading,
 	setNextLoading,
 	filter,
@@ -57,7 +57,7 @@ export default function useFetchTweet({
 		};
 		fetchTweets();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [queryItems, count, filter]);
+	}, [queryItems, page, filter]);
 
 	return { tweets, token, isStart };
 }
