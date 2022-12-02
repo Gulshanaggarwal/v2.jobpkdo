@@ -50,6 +50,7 @@ const funcs = {
 			if (pageNumber > 0) {
 				const data = await bookmark
 					.find({ userId })
+					.sort({ _id: -1 })
 					.select("tweetId applyUrl")
 					.skip((pageNumber - 1) * perPage)
 					.limit(perPage);

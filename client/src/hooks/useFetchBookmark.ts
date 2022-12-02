@@ -28,6 +28,7 @@ export default function useFetchBookmark(page: number) {
 			setError(response.message);
 		};
 		fetchBookmarks();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [page]);
 
 	return { data, error, loading, nextLoading, setNextLoading };

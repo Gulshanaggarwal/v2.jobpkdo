@@ -1,7 +1,8 @@
 interface Response {
 	error: boolean;
 	message: string;
-	data?: string[] | string;
+	data?: any;
+	status: number;
 }
 
 const fetchCall = async (
@@ -30,7 +31,7 @@ const fetchCall = async (
 		}
 		return await res?.json();
 	} catch (error) {
-		return { error: true, message: "error occurred" };
+		return { error: true, message: "error occurred", status: 500 };
 	}
 };
 
