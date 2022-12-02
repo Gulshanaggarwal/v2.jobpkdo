@@ -1,14 +1,20 @@
+interface Response {
+	error: boolean;
+	message: string;
+	data?: string[] | string;
+}
+
 const fetchCall = async (
 	url: string,
 	token: string | undefined,
 	method: string,
 	body?: string
-) => {
+): Promise<Response> => {
 	const headers = {
 		Authorization: "Bearer " + token,
 	};
-	let res;
 
+	let res: globalThis.Response | undefined;
 	try {
 		if (method === "GET") {
 			res = await fetch(url, { headers });
