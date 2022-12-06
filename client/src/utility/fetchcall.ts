@@ -19,7 +19,7 @@ const fetchCall = async (
 	try {
 		if (method === "GET") {
 			res = await fetch(url, { headers });
-		} else if (method === "POST") {
+		} else if (method === "POST" || method === "PATCH") {
 			res = await fetch(url, {
 				method,
 				headers: {

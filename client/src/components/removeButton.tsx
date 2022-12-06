@@ -1,0 +1,47 @@
+import Spinner from "../utility/spinner";
+import { HiOutlineTrash } from 'react-icons/hi'
+import fetchCall from '../utility/fetchcall'
+import { useState, useContext } from 'react'
+import { useAuthContext } from "../context/AuthContext";
+import { BookMarkContext } from "../context/BookMarkContext";
+
+
+type RemoveButtonProps = {
+    tweetId: string
+}
+
+export default function RemoveButton({ tweetId }: RemoveButtonProps) {
+
+    const [loading, setLoading] = useState<boolean>(false);
+    const { user } = useAuthContext();
+    const { data, setData } = useContext(BookMarkContext)
+
+    const handleClick = async () => {
+        const url = 'http://localhost:5000/api/v1/bookmark'
+        const body = JSON.stringify({ tweetId });
+
+        setLoading(true);
+        const response = await fetchCall(url, user?.token, "PATCH", body);
+        setLoading(false);
+        if (!response.error) {
+            const filter = data.filter((ele) => ele.tweetId !== tweetId);
+            setData(filter);
+            alert('removed successfully');
+            return;
+        }
+        alert(response.message)
+
+    }
+
+
+    return (
+        <button onClick={handleClick} className='flex justify-center items-center border-2 border-grey-secondary rounded-md py-1 px-2 gap-1 float-right my-2 hover:bg-red-700 hover:text-grey-main w-24'>
+            {loading ? <Spinner color="#F5F5F5" fontSize="1rem" /> : (
+                <>
+                    <HiOutlineTrash style={{ fontSize: '1rem' }} />
+                    <span className='text-xs'>Remove</span>
+                </>
+            )}
+        </button>
+    )
+}

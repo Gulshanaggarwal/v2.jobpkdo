@@ -40,7 +40,7 @@ const funcs = {
 		}
 	},
 
-	// fetch bookmarked
+	// fetch bookmarks
 
 	fetchBookmarks: async (userId: string, page: string) => {
 		try {
@@ -49,7 +49,7 @@ const funcs = {
 
 			if (pageNumber > 0) {
 				const data = await bookmark
-					.find({ userId })
+					.find({ userId, isDeleted: false })
 					.sort({ _id: -1 })
 					.select("tweetId applyUrl")
 					.skip((pageNumber - 1) * perPage)
@@ -65,6 +65,26 @@ const funcs = {
 				return { error: true, status: 404, message: "No data found" };
 			}
 			return { error: true, status: 404, message: "No data found" };
+		} catch (error) {
+			throw error;
+		}
+	},
+
+	// Remove Bookmarks
+	removeBookmark: async (tweetId: string) => {
+		console.log(tweetId);
+		try {
+			const filter = { tweetId };
+			const update = { isDeleted: true };
+			const data = await bookmark.findOneAndUpdate(filter, update);
+			if (data) {
+				return {
+					error: false,
+					status: 200,
+					message: "Removed successfully",
+				};
+			}
+			return { error: true, status: 404, message: "No resource found" };
 		} catch (error) {
 			throw error;
 		}

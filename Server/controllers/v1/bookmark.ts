@@ -5,6 +5,7 @@ import bookmarkService from "../../services/v1/bookmark";
 interface bookmark {
 	insertViaEndpoint: (req: RequestUserAuth, res: Response) => Promise<void>;
 	fetchBookmarks: (req: RequestUserAuth, res: Response) => Promise<void>;
+	removeBookmark: (req: RequestUserAuth, res: Response) => Promise<void>;
 }
 
 const funcs: bookmark = {
@@ -42,7 +43,26 @@ const funcs: bookmark = {
 			res.status(response.status).json(response);
 		} catch (error) {
 			console.log(error);
-			res.status(500).json({ error: true, message: "Server error" });
+			res.status(500).json({
+				error: true,
+				status: 500,
+				message: "Server error",
+			});
+		}
+	},
+
+	removeBookmark: async (req, res) => {
+		try {
+			const response = await bookmarkService.removeBookmark(
+				req.body.tweetId as string
+			);
+			res.status(response.status).json(response);
+		} catch (error) {
+			res.status(500).json({
+				error: true,
+				status: 500,
+				message: "Server error",
+			});
 		}
 	},
 };
