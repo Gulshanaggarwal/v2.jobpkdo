@@ -45,6 +45,7 @@ export default function AuthContextProvider({
 						avatar: user.photoURL,
 						token
 					})
+					router.push('/jobmarket');
 				}
 				setLoading(false); // setloading to false;
 			});
@@ -72,7 +73,8 @@ export default function AuthContextProvider({
 	const logout = async () => {
 		try {
 			await signOut(auth);
-			router.replace('/');
+			window.location.replace('/');
+
 		} catch (error) {
 			alert('couldn"t" logout, try again')
 		}
