@@ -46,12 +46,15 @@ const Jobmarket: NextPage = () => {
                         <div className='bg-violet-main py-4'>
                             <p className='text-center py-4 text-grey-main font-bold'>Search for the jobs you love ❤</p>
                             <div className='relative w-1/4 mx-auto'>
-                                <div className='flex'>
+                                <form onSubmit={(e) => {
+                                    e.preventDefault();
+                                    handleSubmit(search)
+                                }} className='flex'>
                                     <input value={search} onChange={(e) => setSearch(e.target.value)} className='bg-grey-main rounded-l outline-none px-3 py-2 w-full' type='text' placeholder='Search for skill, techstack..' />
-                                    <button onClick={() => handleSubmit(search)} className='bg-orange-main px-4 rounded-r py-2'>
+                                    <button className='bg-orange-main px-4 rounded-r py-2'>
                                         <FaSistrix style={{ color: '#F5F5F5', fontSize: '1.2rem' }} />
                                     </button>
-                                </div>
+                                </form>
                                 {search !== '' && <Searchhints search={search} handleSubmit={handleSubmit} />}
                             </div>
                             <QueryItems queryItems={queryItems} setQueryItems={setQueryItems} />

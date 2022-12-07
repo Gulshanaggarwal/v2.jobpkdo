@@ -53,7 +53,6 @@ export default function useFetchTweet({
 					return;
 				}
 			}
-			alert(response.message);
 		};
 		fetchTweets();
 		// eslint-disable-next-line react-hooks/exhaustive-deps

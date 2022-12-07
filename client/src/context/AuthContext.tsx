@@ -56,16 +56,18 @@ export default function AuthContextProvider({
 	}, []);
 
 	const login = async () => {
+		setLoading(true);
 		try {
 			const res: any = await signInWithPopup(auth, new TwitterAuthProvider());
-			console.log("res", res.user);
 			setUser({
 				screenName: res.user.auth.currentUser.reloadUserInfo.screenName,
 				avatar: res.user.photoURL,
 				token: res.user.accessToken
 			})
+			setLoading(false);
 
 		} catch (error) {
+			setLoading(false);
 			console.error(error);
 		}
 	};

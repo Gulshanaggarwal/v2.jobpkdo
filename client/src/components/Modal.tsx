@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { useAuthContext } from '../context/AuthContext'
 
 interface ModalProps {
     isShowing: boolean,
@@ -9,7 +10,10 @@ interface ModalProps {
 
 
 export default function Modal({ isShowing, toggle, Component }: ModalProps) {
-    return isShowing ? <>
+
+    const { user } = useAuthContext();
+
+    return (isShowing && !user) ? <>
         <Component toggle={toggle} />
     </> : null
 

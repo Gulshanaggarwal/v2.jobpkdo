@@ -1,5 +1,6 @@
 import { FaTwitter } from 'react-icons/fa'
 import { useAuthContext } from '../context/AuthContext'
+import Spinner from '../utility/spinner';
 
 
 interface SignInProp {
@@ -8,7 +9,8 @@ interface SignInProp {
 
 export default function SignIn({ toggle }: SignInProp) {
 
-    const { login } = useAuthContext();
+    const { login, loading } = useAuthContext();
+    console.log('loading', loading);
     return (
         <>
             <input type='checkbox' defaultChecked id='signin-modal' className='modal-toggle' />
@@ -21,9 +23,17 @@ export default function SignIn({ toggle }: SignInProp) {
                     </h1>
                     <p className='font-extrabold text-center py-4 text-black-main'>Search, Save and Share the Jobs.</p>
                     <p className='font-extrabold text-center py-1 text-black-main'>Start working Remotely.</p>
-                    <button className='flex items-center bg-twitter rounded-full px-4 py-2 mx-auto my-4' onClick={login}>
-                        <FaTwitter style={{ color: '#F5F5F5' }} />
-                        <span className='text-grey-main font-bold px-2'>Login to get started</span>
+                    <button disabled={loading ? true : false} className='flex justify-center items-center bg-twitter rounded-full px-4 py-2 mx-auto my-4 w-1/2' onClick={login}>
+                        {
+                            loading ? <Spinner color='#F5F5F5' fontSize='1.5rem' /> : (
+                                <>
+                                    <FaTwitter style={{ color: '#F5F5F5' }} />
+                                    <span className='text-grey-main font-bold px-2'>
+                                        Login to get started
+                                    </span>
+                                </>
+                            )
+                        }
                     </button>
                 </div>
             </div>

@@ -23,7 +23,13 @@ export default function MainBookMark() {
                                 data.map((tweet) => <Tweet key={tweet.tweetId} id={tweet.tweetId} />)
                             }
                         </div>
-                        {error ? <ErrorTemplate message={error} /> : <LoadMoreButton page={page} setPage={setPage} nextLoading={nextLoading} setNextLoading={setNextLoading} />}
+                        {error ? <ErrorTemplate message={error} /> : (
+                            <>
+                                {
+                                    data.length >= 10 ? <LoadMoreButton page={page} setPage={setPage} nextLoading={nextLoading} setNextLoading={setNextLoading} /> : null
+                                }
+                            </>
+                        )}
                     </div>
                 )
             }

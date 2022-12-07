@@ -39,7 +39,7 @@ export default function AvatarMenu({ active, setActive }: AvatarMenuProp) {
                         </a>
                     </Link>)
                 }
-                <button className='block text-left px-4 py-2' onClick={() => logout()}>Logout</button>
+                <button className='block text-left px-4 py-2 hover:bg-grey-secondary' onClick={() => logout()}>Logout</button>
             </div>
         </div>
     ) : null

@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useAuthContext } from "../context/AuthContext";
 
 const useModal = () => {
 	const [isShowing, setIsShowing] = useState(false);
+	const { loading } = useAuthContext();
 
 	function toggle() {
-		setIsShowing(!isShowing);
+		if (!loading) {
+			setIsShowing(!isShowing);
+		}
 	}
 
 	return { isShowing, toggle };
