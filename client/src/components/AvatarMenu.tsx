@@ -30,7 +30,7 @@ export default function AvatarMenu({ active, setActive }: AvatarMenuProp) {
     console.log(router.pathname);
 
     return active ? (
-        <div className='absolute -top-5 -right-5 w-screen h-screen' onClick={() => setActive(!active)}>
+        <div className='absolute -top-5 -right-5 w-screen h-screen z-10' onClick={() => setActive(!active)}>
             <div className='absolute flex flex-col gap-y-1 bg-grey-main rounded-sm top-20 right-6 w-36 shadow-md'>
                 {
                     menuLinks.map((ele) => <Link key={ele.value} href={ele.path}>

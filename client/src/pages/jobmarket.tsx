@@ -45,7 +45,7 @@ const Jobmarket: NextPage = () => {
                     <main>
                         <div className='bg-violet-main py-4'>
                             <p className='text-center py-4 text-grey-main font-bold'>Search for the jobs you love ❤</p>
-                            <div className='relative w-1/4 mx-auto'>
+                            <div className='relative w-3/4 lg:w-1/3 z-9 mx-auto'>
                                 <form onSubmit={(e) => {
                                     e.preventDefault();
                                     handleSubmit(search)

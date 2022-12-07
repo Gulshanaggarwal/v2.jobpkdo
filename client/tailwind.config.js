@@ -32,6 +32,9 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Inter', ...defaultTheme.fontFamily.sans]
+      },
+      screens: {
+        '3xl': '1792px'
       }
     },
   },

@@ -1,10 +1,10 @@
 import apiFetch from "../../utils/apiFetch";
+import filterTweets from "../../utils/filterTweets";
 
 const funcs = {
 	searchJob: async (search: string, filter: string, next_token: string) => {
-		console.log("filter", filter);
 		try {
-			const tweetQuery = `("we are hiring" OR "is hiring" OR "we are looking for" OR "i am looking for") ${search} -flatmate -roommate -something lang:en -is:retweet`;
+			const tweetQuery = `("we are hiring" OR "is hiring" OR "we are looking for" OR "i am looking for") ${search} ${filter} -flatmate -roommate -something -sex lang:en -is:retweet`;
 			const baseURL = `https://api.twitter.com/2/tweets/search/recent?query=${tweetQuery}`;
 			const url = next_token
 				? baseURL + `&next_token=${next_token}`
