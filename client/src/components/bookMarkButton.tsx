@@ -15,7 +15,7 @@ export default function BookmarkButton({ tweetId, applyUrl }: BookmarkButtonProp
     const { user } = useAuthContext();
 
     const handleClick = async () => {
-        const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`;
+        const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/bookmark`;
         const body = JSON.stringify({ tweetId, applyUrl });
 
         setLoading(true);
