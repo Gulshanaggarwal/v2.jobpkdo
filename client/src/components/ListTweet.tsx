@@ -1,5 +1,4 @@
 import Tweet from "./Tweet"
-import Spinner from '../utility/spinner'
 import LoadMoreButton from "../utility/LoadmoreButton";
 
 interface ListTweet {
