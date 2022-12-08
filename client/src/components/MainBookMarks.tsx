@@ -20,7 +20,7 @@ export default function MainBookMark() {
                     <div>
                         <div className='grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-8'>
                             {
-                                data.map((tweet) => <Tweet key={tweet.tweetId} id={tweet.tweetId} />)
+                                data.map((tweet) => <Tweet key={tweet.tweetId} id={tweet.tweetId} applyUrl={tweet.applyUrl} />)
                             }
                         </div>
                         {error ? <ErrorTemplate message={error} /> : (

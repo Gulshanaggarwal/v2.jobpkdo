@@ -35,6 +35,9 @@ module.exports = {
       },
       screens: {
         '3xl': '1792px'
+      },
+      borderWidth: {
+        '1': '1px'
       }
     },
   },

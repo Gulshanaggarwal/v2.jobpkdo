@@ -9,6 +9,11 @@ import { useRouter } from 'next/router';
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
+  // disable console.log from prod
+  if (process.env.NODE_ENV === 'production') {
+    console.log = () => { }
+  }
+
   return <AuthContextProvider>
     <Header />
     <Component {...pageProps} />

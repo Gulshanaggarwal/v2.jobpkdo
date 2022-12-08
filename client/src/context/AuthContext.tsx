@@ -53,6 +53,7 @@ export default function AuthContextProvider({
 		} catch (error) {
 			console.log(error);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const login = async () => {
@@ -65,6 +66,7 @@ export default function AuthContextProvider({
 				token: res.user.accessToken
 			})
 			setLoading(false);
+			router.push('/jobmarket');
 
 		} catch (error) {
 			setLoading(false);

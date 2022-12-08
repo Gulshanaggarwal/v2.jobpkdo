@@ -17,10 +17,6 @@ const menuLinks = [
         path: '/bookmarks',
         value: 'Bookmarks'
     },
-    {
-        path: '/settings',
-        value: 'Settings'
-    }
 ]
 
 export default function AvatarMenu({ active, setActive }: AvatarMenuProp) {
