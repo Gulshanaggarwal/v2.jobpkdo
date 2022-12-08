@@ -4,6 +4,3 @@ node_modules
 
 #env
 .env
-
-#serviceAccountKey
-/config/serviceAccountKey.json
