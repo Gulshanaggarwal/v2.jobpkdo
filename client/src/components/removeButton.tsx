@@ -17,7 +17,7 @@ export default function RemoveButton({ tweetId }: RemoveButtonProps) {
     const { data, setData } = useContext(BookMarkContext)
 
     const handleClick = async () => {
-        const url = 'http://localhost:5000/api/v1/bookmark'
+        const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/bookmark`
         const body = JSON.stringify({ tweetId });
 
         setLoading(true);

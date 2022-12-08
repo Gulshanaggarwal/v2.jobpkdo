@@ -34,7 +34,7 @@ export default function BookMarkContextProvider({ children }: BookMarkContextPro
 
     useEffect(() => {
         const fetchBookmarks = async () => {
-            const url = `http://localhost:5000/api/v1/bookmark?page=${page}`;
+            const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}?page=${page}`;
             const response = await fetchCall(url, user?.token, "GET");
             console.log("res", response);
             if (loading) {

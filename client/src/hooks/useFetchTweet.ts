@@ -28,9 +28,9 @@ export default function useFetchTweet({
 	useEffect(() => {
 		const fetchTweets = async () => {
 			const baseUrl =
-				`http://localhost:5000/api/v1/search?search=${queryItems.join(
-					" "
-				)}` +
+				`${
+					process.env.NEXT_PUBLIC_SERVER_BASE_URL
+				}/search?search=${queryItems.join(" ")}` +
 				" " +
 				`&filter=${filter.join(" ")}`;
 			const url = token ? baseUrl + `&next_token=${token}` : baseUrl;
