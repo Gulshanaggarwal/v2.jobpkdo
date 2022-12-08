@@ -3,7 +3,7 @@ import { FaTwitter, FaGithub, FaSistrix, FaRegBookmark, FaRegCheckCircle, FaRegB
 import { BiShareAlt } from 'react-icons/bi'
 import Image from 'next/image'
 import Modal from '../components/Modal'
-import SignIn from '../components/Signin'
+import SignIn from '../components/signin'
 import useModal from '../hooks/useModal'
 
 const iconStyle = {

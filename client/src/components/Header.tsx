@@ -1,6 +1,6 @@
 import useModal from '../hooks/useModal';
 import Modal from './Modal';
-import SignIn from './Signin';
+import SignIn from './signin';
 import Avatar from './Avatar';
 import { useAuthContext } from '../context/AuthContext';
 import Spinner from '../utility/spinner';
