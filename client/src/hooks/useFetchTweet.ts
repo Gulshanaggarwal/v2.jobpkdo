@@ -17,7 +17,9 @@ export default function useFetchTweet({
 	setNextLoading,
 	filter,
 }: useFetchTweet) {
-	const [tweets, setTweets] = useState<{ id: string }[]>([]);
+	const [tweets, setTweets] = useState<{ id: string; applyUrl: string }[]>(
+		[]
+	);
 	const [token, setToken] = useState<string | null>(null);
 	const [isStart, setIsStart] = useState<boolean>(true);
 	const [prevQueryUrl, setPrevQueryUrl] = useState<string>("");

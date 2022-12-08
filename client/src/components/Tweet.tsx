@@ -6,7 +6,7 @@ import ShareButton from './shareButton';
 
 
 type TweetProps = {
-    id: string,
+    id: string;
     applyUrl: string
 }
 
