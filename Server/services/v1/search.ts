@@ -1,5 +1,5 @@
 import apiFetch from "../../utils/apiFetch";
-
+import { removeFields, findUrlAndAppend } from "../../utils/cleanSearchData";
 const funcs = {
 	searchJob: async (search: string, filter: string, next_token: string) => {
 		try {
@@ -11,12 +11,15 @@ const funcs = {
 
 			const response = await apiFetch(url);
 			if (!response.errors && response.meta.result_count !== 0) {
+				// find if the tweet contains url & append them to the result
+				const d = removeFields(response.data);
+				const data = findUrlAndAppend(d);
 				return {
 					error: false,
 					status: 200,
 					message: "successfully fetched",
 					data: {
-						data: response.data,
+						data,
 						next_token: response.meta.next_token,
 					},
 				};

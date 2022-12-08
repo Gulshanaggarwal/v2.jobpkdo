@@ -8,7 +8,19 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+const whiteList = ["https://jobpkdo.vercel.app"];
+
+const corsOptionsDelegate = function (req, callback) {
+	let corsOptions;
+	if (whiteList.indexOf(req.header("Origin")) !== -1) {
+		corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+	} else {
+		corsOptions = { origin: false }; // disable CORS for this request
+	}
+	callback(null, corsOptions); // callback expects two parameters: error and options
+};
+
+app.use(cors(corsOptionsDelegate));
 app.use(bodyParser.json());
 app.use(authMiddleware); //auth middleware
 app.use("/api", routes);
