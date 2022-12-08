@@ -3,7 +3,7 @@ import Spinner from '../utility/spinner'
 import LoadMoreButton from "../utility/LoadmoreButton";
 
 interface ListTweet {
-    list: { id: string }[];
+    list: { id: string; applyUrl: string }[];
     page: number;
     setPage: (type: number) => void;
     isStart: boolean;

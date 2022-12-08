@@ -14,7 +14,7 @@ export default function RemoveButton({ tweetId }: RemoveButtonProps) {
 
     const [loading, setLoading] = useState<boolean>(false);
     const { user } = useAuthContext();
-    const { data, setData } = useContext(BookMarkContext)
+    const { data, setData }: any = useContext(BookMarkContext)
 
     const handleClick = async () => {
         const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/bookmark`
@@ -24,7 +24,7 @@ export default function RemoveButton({ tweetId }: RemoveButtonProps) {
         const response = await fetchCall(url, user?.token, "PATCH", body);
         setLoading(false);
         if (!response.error) {
-            const filter = data.filter((ele) => ele.tweetId !== tweetId);
+            const filter = data.filter((ele: any) => ele.tweetId !== tweetId);
             setData(filter);
             alert('removed successfully');
             return;
