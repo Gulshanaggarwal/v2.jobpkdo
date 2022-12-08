@@ -32,12 +32,19 @@
 ##### Front-end -
 
 NEXT_PUBLIC_FIREBASE_API_KEY= Firebase Credentials
+
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN= Firebase Credentials
+
 NEXT_PUBLIC_FIREBASE_PROJECT_ID= Firebase Credentials
+
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET= Firebase Credentials
+
 NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID= Firebase Credentials
+
 NEXT_PUBLIC_FIREBASE_APP_ID= Firebase Credentials
+
 NEXT_PUBLIC_FIREBASE_MESAUREMENT_ID= Firebase Credentials
+
 NEXT_PUBLIC_SERVER_BASE_URL = your backend url
 
 Note: You need to enable sign in with Twitter in firebase authentication.
