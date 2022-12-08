@@ -11,10 +11,10 @@ export default function Footer() {
         <footer className='pt-16 px-5 bg-black-main'>
             <h1 className='font-extrabold text-grey-main'>JOBPKDO</h1>
             <div className='flex py-8 space-x-6'>
-                <a href=''>
+                <a href='https://github.com/Gulshanaggarwal/v2.jobpkdo'>
                     <FaGithub style={iconStyle} />
                 </a>
-                <a href='https://github.com/Gulshanaggarwal/v2.jobpkdo'>
+                <a href='https://twitter.com/gulshanagg333'>
                     <FaTwitter style={iconStyle} />
                 </a>
             </div>

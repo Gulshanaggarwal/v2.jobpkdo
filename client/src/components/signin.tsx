@@ -23,7 +23,7 @@ export default function SignIn({ toggle }: SignInProp) {
                     </h1>
                     <p className='font-extrabold text-center py-4 text-black-main'>Search, Save and Share the Jobs.</p>
                     <p className='font-extrabold text-center py-1 text-black-main'>Start working Remotely.</p>
-                    <button disabled={loading ? true : false} className='flex justify-center items-center bg-twitter rounded-full px-4 py-2 mx-auto my-4 w-1/2' onClick={login}>
+                    <button disabled={loading ? true : false} className='flex justify-center items-center bg-twitter rounded-full px-4 py-2 mx-auto my-4 w-3/4 sm:w-1/2' onClick={login}>
                         {
                             loading ? <Spinner color='#F5F5F5' fontSize='1.5rem' /> : (
                                 <>

@@ -1,5 +1,4 @@
 import apiFetch from "../../utils/apiFetch";
-import filterTweets from "../../utils/filterTweets";
 
 const funcs = {
 	searchJob: async (search: string, filter: string, next_token: string) => {

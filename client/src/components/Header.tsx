@@ -18,7 +18,7 @@ export default function Header() {
                 <span className='text-orange-main'>JOB</span>
                 <span className='text-black-main'>PKDO</span>
             </h1>
-            {loading ? <Spinner color="#F29393" fontSize="1rem" /> : (!user ? <button onClick={toggle} className='bg-violet-main text-grey-main rounded-full px-3 py-1 text-xs'>Signin</button> :
+            {loading ? <Spinner color="#F29393" fontSize="1rem" /> : (!user ? <button onClick={toggle} className='bg-violet-main text-grey-main rounded-full px-4 py-2 text-xs'>Sign in</button> :
                 <Avatar url={user.avatar} />)}
 
             <Modal isShowing={isShowing} toggle={toggle} Component={SignIn} />
