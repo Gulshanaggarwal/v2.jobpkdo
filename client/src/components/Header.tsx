@@ -1,7 +1,6 @@
 import useModal from '../hooks/useModal';
 import Modal from './Modal';
 import SignIn from './Signin';
-import { FaSpinner } from 'react-icons/fa'
 import Avatar from './Avatar';
 import { useAuthContext } from '../context/AuthContext';
 import Spinner from '../utility/spinner';
