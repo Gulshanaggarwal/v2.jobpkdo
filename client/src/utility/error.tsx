@@ -5,6 +5,6 @@ type ErrorTemplateProps = {
 
 export default function ErrorTemplate({ message }: ErrorTemplateProps) {
     return (
-        <p>{message}</p>
+        <p className='text-center'>{message}</p>
     )
 }

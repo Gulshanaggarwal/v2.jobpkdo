@@ -7,6 +7,8 @@ import Searchhints from '../components/Searchhints'
 import ListTweet from '../components/ListTweet'
 import Filter from '../components/Filter'
 import useFetchTweet from '../hooks/useFetchTweet'
+import Spinner from '../utility/spinner'
+import ErrorTemplate from '../utility/error'
 
 
 
@@ -17,7 +19,7 @@ const Jobmarket: NextPage = () => {
     const [page, setPage] = useState<number>(0);
     const [nextLoading, setNextLoading] = useState<boolean>(false);
     const [filter, setFilter] = useState<string[]>([]);
-    const { tweets, token, isStart } = useFetchTweet({ queryItems, page, nextLoading, setNextLoading, filter });
+    const { tweets, token, setToken, loading, error } = useFetchTweet({ queryItems, page, nextLoading, setNextLoading, filter });
 
 
 
@@ -28,6 +30,10 @@ const Jobmarket: NextPage = () => {
         if (queryItems.length >= 5) return alert('Remove a item from the search');
 
         if (!queryItems.find((query) => query === search.trim())) {
+
+            if (token) {
+                setToken(null);
+            }
             setQueryItems([...queryItems, search.trim()])
             setSearch('');
         }
@@ -60,8 +66,14 @@ const Jobmarket: NextPage = () => {
                             <QueryItems queryItems={queryItems} setQueryItems={setQueryItems} />
                         </div>
                         {/* Filter */}
-                        <Filter filter={filter} setFilter={setFilter} />
-                        <ListTweet isStart={isStart} token={token} page={page} setPage={setPage} list={tweets} nextLoading={nextLoading} setNextLoading={setNextLoading} />
+                        <Filter filter={filter} setFilter={setFilter} token={token} setToken={setToken} />
+                        {
+                            loading && <div className='flex justify-center items-center py-4'><Spinner color="#F29393" fontSize="2rem" /></div>
+                        }
+                        {
+                            error && <ErrorTemplate message={error} />
+                        }
+                        <ListTweet token={token} page={page} setPage={setPage} list={tweets} nextLoading={nextLoading} setNextLoading={setNextLoading} />
 
                     </main>
                 </div>

@@ -13,7 +13,7 @@ export default function MainBookMark() {
         <main className='p-4'>
             <h3 className='text-center font-extrabold text-xl py-16'>Find your all saved jobs here 🚀</h3>
             {/* List tweets */}
-            {loading && <Spinner color="#F29393" fontSize="2rem" />}
+            {loading && <div className='flex justify-center items-center'><Spinner color="#F29393" fontSize="2rem" /></div>}
             {(error && page === 1) && <ErrorTemplate message={error} />}
             {
                 data.length > 0 && (

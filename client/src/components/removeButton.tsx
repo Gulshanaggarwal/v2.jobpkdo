@@ -35,8 +35,8 @@ export default function RemoveButton({ tweetId }: RemoveButtonProps) {
 
 
     return (
-        <button onClick={handleClick} className='flex justify-center items-center border-2 border-grey-secondary rounded-md py-1 px-2 gap-1 float-right my-2 hover:bg-red-700 hover:text-grey-main w-24'>
-            {loading ? <Spinner color="#F5F5F5" fontSize="1rem" /> : (
+        <button disabled={loading ? true : false} onClick={handleClick} className='flex justify-center items-center border-1 border-grey-secondary rounded-md py-1 px-2 gap-1 float-right my-2 hover:bg-grey-secondary w-24'>
+            {loading ? <Spinner color="#F29393" fontSize="1rem" /> : (
                 <>
                     <HiOutlineTrash style={{ fontSize: '1rem' }} />
                     <span className='text-xs'>Remove</span>

@@ -4,6 +4,8 @@ import { MdOutlineRefresh } from 'react-icons/md'
 interface FilterProp {
     filter: string[];
     setFilter: (type: string[]) => void;
+    token: string | null;
+    setToken: (type: string | null) => void;
 }
 
 type Filter = {
@@ -12,7 +14,7 @@ type Filter = {
     intern: boolean
 }
 
-export default function Filter({ filter, setFilter }: FilterProp) {
+export default function Filter({ filter, setFilter, token, setToken }: FilterProp) {
 
     const [filterState, setFilterState] = useState<Filter>({
         fulltime: false,
@@ -27,6 +29,10 @@ export default function Filter({ filter, setFilter }: FilterProp) {
         values[name as keyof Filter] = checked;
         setFilterState({ ...values });
 
+        if (token) {
+            setToken(null);
+        }
+
         if (checked) {
             setFilter([...filter, value])
         }
@@ -38,6 +44,10 @@ export default function Filter({ filter, setFilter }: FilterProp) {
     }
 
     const handleReset = () => {
+
+        if (token) {
+            setToken(null);
+        }
         if (filter.length !== 0) {
             setFilter([]);
             setFilterState({

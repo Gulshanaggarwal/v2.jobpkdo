@@ -69,7 +69,7 @@ export default function AuthContextProvider({
 
 		} catch (error) {
 			setLoading(false);
-			console.error(error);
+			alert("Error try again!");
 		}
 	};
 
@@ -79,7 +79,7 @@ export default function AuthContextProvider({
 			window.location.replace('/');
 
 		} catch (error) {
-			alert('couldn"t" logout, try again')
+			alert('Couldn"t logout, try again!')
 		}
 
 	}

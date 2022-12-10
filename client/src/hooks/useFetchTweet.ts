@@ -17,15 +17,22 @@ export default function useFetchTweet({
 	setNextLoading,
 	filter,
 }: useFetchTweet) {
-	const [tweets, setTweets] = useState<{ id: string }[]>([]);
+	const [tweets, setTweets] = useState<{ id: string; applyUrl: string }[]>(
+		[]
+	);
 	const [token, setToken] = useState<string | null>(null);
-	const [isStart, setIsStart] = useState<boolean>(true);
 	const [prevQueryUrl, setPrevQueryUrl] = useState<string>("");
+	const [loading, setLoading] = useState<boolean>(true);
+	const [error, setError] = useState<string>("");
 	const { user } = useAuthContext();
 
-	console.log("quer", queryItems);
-
 	useEffect(() => {
+		if (!loading && !token) {
+			setLoading(true);
+		}
+		if (error) {
+			setError("");
+		}
 		const fetchTweets = async () => {
 			const baseUrl =
 				`http://localhost:5000/api/v1/search?search=${queryItems.join(
@@ -36,6 +43,7 @@ export default function useFetchTweet({
 			const url = token ? baseUrl + `&next_token=${token}` : baseUrl;
 			const response = await fetchCall(url, user?.token, "GET");
 
+			setLoading(false);
 			if (nextLoading) {
 				setNextLoading(!nextLoading);
 			}
@@ -48,15 +56,18 @@ export default function useFetchTweet({
 					setTweets([...tweets, ...response.data.data]);
 				}
 				if (response.data.next_token) {
-					setIsStart(false);
 					setToken(response.data.next_token);
 					return;
 				}
+			}
+			if (response.error && response.status === 404) {
+				setTweets([]);
+				setError(response.message);
 			}
 		};
 		fetchTweets();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [queryItems, page, filter]);
 
-	return { tweets, token, isStart };
+	return { tweets, token, setToken, loading, error };
 }

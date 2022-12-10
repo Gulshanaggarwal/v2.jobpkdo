@@ -28,8 +28,8 @@ export default function BookmarkButton({ tweetId }: BookmarkButtonProps) {
 
     }
     return (
-        <button onClick={handleClick} className='flex justify-center items-center border-2 border-grey-secondary rounded-md py-1 px-2 gap-1 float-right my-2 hover:bg-green-700 hover:text-grey-main w-24'>
-            {loading ? <Spinner color="#F5F5F5" fontSize="1rem" /> : (
+        <button disabled={loading ? true : false} onClick={handleClick} className='flex justify-center items-center border-1 border-grey-secondary rounded-md py-1 px-2 gap-1 float-right my-2 hover:bg-grey-secondary w-24'>
+            {loading ? <Spinner color="#F29393" fontSize="1rem" /> : (
                 <>
                     <FaRegBookmark style={{ fontSize: '0.8rem' }} />
                     <span className='text-xs'>Bookmark</span>
